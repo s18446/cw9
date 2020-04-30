@@ -339,7 +339,16 @@ namespace LinqConsoleApp
             var res = (from emp in Emps
                        where emp.Job == "Frontend programmer"
                        orderby emp.HireDate descending
-                       select emp).Take(1);
+                       select new
+                       {
+                           emp.Ename,
+                           emp.Job,
+                           emp.Mgr,
+                           emp.Deptno,
+                           emp.Empno,
+                           emp.HireDate,
+                           emp.Salary
+                       }).Take(1);
 
             res.ToList().ForEach(x => Console.WriteLine(x));
         }
